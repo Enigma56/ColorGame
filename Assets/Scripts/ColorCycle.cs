@@ -24,7 +24,6 @@ public class ColorCycle : MonoBehaviour
         colorVectors[0] = new Vector4(0, 1, 1, 1);
         colorVectors[1] = new Vector4(1, 1, 0, 1);
         colorVectors[2] = new Vector4(1, 0, 1, 1);
-        Debug.Log(colorVectors);
         //StartCoroutine(TestPickup());
         spinning = false;
     }

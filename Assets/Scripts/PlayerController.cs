@@ -10,10 +10,16 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D rb2D;
     int jumpNumber;
 
+    public GameObject projectile;
+    public float projectileTimer;
+    bool canShoot;
+
+
     // Start is called before the first frame update
     void Start()
     {
         rb2D = GetComponent<Rigidbody2D>();
+        canShoot = true;
     }
 
     // Update is called once per frame
@@ -45,10 +51,15 @@ public class PlayerController : MonoBehaviour
             cycle.Rotate();
         }
 
+        if (Input.GetKey(KeyCode.RightShift) && cycle.GetColor() == "magenta")
+        {
+            ShootProjectile(input);
+        }
+
         // Check jump reset
         if (jumpNumber > 0)
         {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 0.5f);
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 0.51f);
             if (hit.collider != null)
             {
                 if (hit.collider.CompareTag("Platform"))
@@ -74,6 +85,29 @@ Vector2 Jump(Vector2 velocity)
             velocity.y = jumpForce;
         }
         return velocity;
+    }
+
+void ShootProjectile(float inputDirection)
+    {
+        if (!canShoot)
+        {
+            return;
+        }
+        canShoot = false;
+        if (inputDirection >= 0)
+        {
+            Instantiate(projectile, transform.position + Vector3.right, Quaternion.Euler(0,0,0));
+        }
+        else
+        {
+            Instantiate(projectile, transform.position + Vector3.left, Quaternion.Euler(0,0,180));
+        }
+        Invoke(nameof(ResetShoot), projectileTimer);
+    }
+
+    void ResetShoot()
+    {
+        canShoot = true;
     }
 
 private void OnTriggerEnter2D(Collider2D other)
