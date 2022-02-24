@@ -8,6 +8,7 @@ TagManager:
   - CyanOrb
   - YellowOrb
   - MagentaOrb
+  - Boss
   layers:
   - Default
   - TransparentFX
