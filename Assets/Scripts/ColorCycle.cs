@@ -5,13 +5,13 @@ using UnityEngine;
 public class ColorCycle : MonoBehaviour
 {
     public GameObject[] orbs;
-    int currentColorIndex;
     List<string> colors = new List<string>();
     SpriteRenderer spriteRenderer;
+
+    int currentColorIndex;
+
     Vector4[] colorVectors = new Vector4[3];
-
     Vector2 orbPosition1 = new Vector2(0, 2f);  // Directly above, used for 2 orbs and 4 orbs
-
     Vector2 orbPosition2 = new Vector2(Mathf.Sqrt(3)/2, 1.5f);
     Vector2 orbPosition3 = new Vector2(-Mathf.Sqrt(3)/2, 1.5f);
 

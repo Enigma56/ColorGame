@@ -1,21 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
     public float speed;
     public float jumpForce;
-    bool checkJump;
+    public float projectileTimer;
+    public bool movementLocked;
     public ColorCycle cycle;
+    public GameObject projectile;
+
+    bool checkJump, checkColor, canShoot;
     Rigidbody2D rb2D;
     int jumpNumber;
-
-    public bool movementLocked;
-
-    public GameObject projectile;
-    public float projectileTimer;
-    bool canShoot;
 
 
     // Start is called before the first frame update
@@ -23,6 +22,7 @@ public class PlayerController : MonoBehaviour
     {
         rb2D = GetComponent<Rigidbody2D>();
         canShoot = true;
+        checkColor = false;
     }
 
     // Update is called once per frame
@@ -54,8 +54,14 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKey(KeyCode.LeftShift))
             {
                 cycle.Rotate();
+                if (!checkColor)
+                {
+                    checkColor = true;
+                    Invoke(nameof(CheckColor), 0.5f);
+                }
             }
 
+            // trigger firing projectile in the direction the player is moving (default right)
             if (Input.GetKey(KeyCode.RightShift) && cycle.GetColor() == "magenta")
             {
                 ShootProjectile(input);
@@ -101,14 +107,24 @@ void CheckJump()
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 0.52f);
         if (hit.collider != null)
         {
-            if (hit.collider.CompareTag("Platform"))
-            {
-                jumpNumber = 0;
-            }
+            jumpNumber = 0;
         }
     }
 
-void ShootProjectile(float inputDirection)
+void CheckColor()
+{
+    RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 0.52f);
+    if (hit.collider != null)
+    {
+        if (!hit.collider.CompareTag(cycle.GetColor()) && !hit.collider.CompareTag("Platform"))
+            {
+                PlayerDeath();
+            }
+    }
+        checkColor = false;
+}
+
+    void ShootProjectile(float inputDirection)
     {
         if (!canShoot)
         {
@@ -151,8 +167,28 @@ void ShootProjectile(float inputDirection)
         }
         if (other.CompareTag("Boss"))
         {
-            Debug.Log(transform.position.x);
+            PlayerDeath();
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Obstacle")){
+            PlayerDeath();
+        }
+        else if (other.gameObject.CompareTag("Platform"))
+        {
+            return;
+        }
+        else if (other.gameObject.tag != cycle.GetColor())
+        {
+            PlayerDeath();
+        }
+    }
+
+    void PlayerDeath()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
 }

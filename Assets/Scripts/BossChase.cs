@@ -7,7 +7,9 @@ public class BossChase : MonoBehaviour
     public float startSpeed;
     public float speedIncrement;
     public float timeBeforeStart;
+
     Rigidbody2D rb;
+
     // Start is called before the first frame update
     void Start()
     {

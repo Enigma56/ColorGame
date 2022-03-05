@@ -9,6 +9,10 @@ TagManager:
   - YellowOrb
   - MagentaOrb
   - Boss
+  - Obstacle
+  - cyan
+  - yellow
+  - magenta
   layers:
   - Default
   - TransparentFX
