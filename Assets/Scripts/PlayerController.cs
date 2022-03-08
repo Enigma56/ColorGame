@@ -173,6 +173,10 @@ void CheckColor()
         {
             movementLocked = false;
         }
+        else if (other.CompareTag("StageExit"))
+        {
+            StageComplete();
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -191,6 +195,11 @@ void CheckColor()
     }
 
     void PlayerDeath()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    void StageComplete()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
