@@ -13,6 +13,7 @@ TagManager:
   - cyan
   - yellow
   - magenta
+  - AllowMove
   layers:
   - Default
   - TransparentFX

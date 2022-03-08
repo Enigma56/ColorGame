@@ -155,19 +155,23 @@ void CheckColor()
             cycle.PickUpColor("cyan");
             Destroy(other.gameObject);
         }
-        if (other.CompareTag("YellowOrb"))
+        else if (other.CompareTag("YellowOrb"))
         {
             cycle.PickUpColor("yellow");
             Destroy(other.gameObject);
         }
-        if (other.CompareTag("MagentaOrb"))
+        else if (other.CompareTag("MagentaOrb"))
         {
             cycle.PickUpColor("magenta");
             Destroy(other.gameObject);
         }
-        if (other.CompareTag("Boss"))
+        else if (other.CompareTag("Boss"))
         {
             PlayerDeath();
+        }
+        else if (other.CompareTag("AllowMove"))
+        {
+            movementLocked = false;
         }
     }
 

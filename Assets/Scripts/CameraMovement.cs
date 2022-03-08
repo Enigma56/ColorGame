@@ -16,7 +16,7 @@ public class CameraMovement : MonoBehaviour
         
     }
 
-    void Update()
+    void FixedUpdate()
     {
         Vector3 start = transform.position;
         Vector3 goal = target.position + new Vector3(0.0f,0.0f,-10);
