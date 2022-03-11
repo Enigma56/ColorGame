@@ -22,9 +22,7 @@ public class PlayerProjectile : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.gameObject.CompareTag("Platform"))
-        {
-            Deconstructor();
-        }
+        //impact effect
+        Destroy(gameObject);
     }
 }

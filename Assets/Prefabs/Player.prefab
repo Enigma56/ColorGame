@@ -180,7 +180,7 @@ GameObject:
   - component: {fileID: 1031065515432952585}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -330,9 +330,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   jumpForce: 7
+  projectileTimer: 2
+  movementLocked: 0
   cycle: {fileID: 1031065515432952590}
   projectile: {fileID: 4114377269475263857, guid: eff9cdfd29d4344cab9f6bef40059090, type: 3}
-  projectileTimer: 2
 --- !u!1 &1031065515800102663
 GameObject:
   m_ObjectHideFlags: 0

@@ -15,6 +15,7 @@ TagManager:
   - magenta
   - AllowMove
   - Projectile
+  - StageExit
   layers:
   - Default
   - TransparentFX

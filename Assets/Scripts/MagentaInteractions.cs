@@ -28,8 +28,6 @@ public class MagentaInteractions : MonoBehaviour
             {
                 //trigger break effect
                 Destroy(gameObject);
-                //trigger projectile effect
-                Destroy(collision.collider.gameObject);
                 
             }
             if (key)
@@ -39,8 +37,6 @@ public class MagentaInteractions : MonoBehaviour
                 {
                     StartCoroutine(UnlockDoor());
                 }
-                //trigger projectile effect
-                Destroy(collision.collider.gameObject);
             }
         }
     }
