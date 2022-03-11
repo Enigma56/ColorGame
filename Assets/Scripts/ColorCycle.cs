@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ColorCycle : MonoBehaviour
 {
+    public bool startCyan, startYellow, startMagenta;
     public GameObject[] orbs;
     List<string> colors = new List<string>();
     SpriteRenderer spriteRenderer;
@@ -24,7 +25,10 @@ public class ColorCycle : MonoBehaviour
         colorVectors[0] = new Vector4(0, 1, 1, 1);
         colorVectors[1] = new Vector4(1, 1, 0, 1);
         colorVectors[2] = new Vector4(1, 0, 1, 1);
-        //StartCoroutine(TestPickup());
+        if (startCyan) { PickUpColor("cyan"); }
+        if (startYellow) { PickUpColor("yellow"); }
+        if (startMagenta) { PickUpColor("magenta"); }
+
         spinning = false;
     }
 
