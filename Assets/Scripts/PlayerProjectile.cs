@@ -6,6 +6,7 @@ public class PlayerProjectile : MonoBehaviour
 {
     public float lifetime;
     public float speed;
+    public ParticleSystem impact;
     Rigidbody2D rb;
     // Start is called before the first frame update
     void Start()
@@ -23,6 +24,10 @@ public class PlayerProjectile : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         //impact effect
-        Destroy(gameObject);
+        GetComponent<SpriteRenderer>().enabled = false;
+        GetComponent<Collider2D>().enabled = false;
+        rb.velocity = Vector2.zero;
+        impact.Play();
+        Invoke(nameof(Deconstructor),0.5f);
     }
 }
