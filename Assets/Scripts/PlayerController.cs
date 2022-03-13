@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     bool checkJump, checkColor, canShoot;
     Rigidbody2D rb2D;
     int jumpNumber;
+    float lastInput;
 
 
     // Start is called before the first frame update
@@ -41,6 +42,7 @@ public class PlayerController : MonoBehaviour
                 vel = Jump(vel);
             }
 
+            // If player color is yellow --> increase speed
             if (cycle.GetColor() == "yellow")
             {
                 speed = 9f;
@@ -61,10 +63,16 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
+            // Track last input in order to fire projectile in the direction the player last moved
+            if (input != 0)
+            {
+                lastInput = input;
+            }
+
             // trigger firing projectile in the direction the player is moving (default right)
             if (Input.GetKey(KeyCode.RightShift) && cycle.GetColor() == "magenta")
             {
-                ShootProjectile(input);
+                ShootProjectile(lastInput);
             }
 
             // Check jump reset
@@ -77,7 +85,8 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-Vector2 Jump(Vector2 velocity)
+    // Jump function that checks conditions and boosts y velocity
+    Vector2 Jump(Vector2 velocity)
     {
         if (jumpNumber == 0)
         {
@@ -96,34 +105,39 @@ Vector2 Jump(Vector2 velocity)
         return velocity;
     }
 
+    // Wait a few frames before checking to reset jump so that the player does not gain double/triple jump
     IEnumerator JumpFrames()
     {
         yield return new WaitForSeconds(0.05f);
         checkJump = true;
     }
 
-void CheckJump()
+    // Fire raycasts down to see if player is ontop of a platform, in which case reset jumps
+    void CheckJump()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 0.52f);
-        if (hit.collider != null)
+        RaycastHit2D hitLeft = Physics2D.Raycast(transform.position + (Vector3.left * 0.5f), Vector2.down, 0.52f);
+        RaycastHit2D hitRight = Physics2D.Raycast(transform.position + (Vector3.right * 0.5f), Vector2.down, 0.52f);
+        if (hitLeft.collider != null || hitRight.collider != null)
         {
             jumpNumber = 0;
         }
     }
 
-void CheckColor()
-{
-    RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 0.52f);
-    if (hit.collider != null)
+    // When player shifts color, check to see player color matches platform they are on
+    void CheckColor()
     {
-        if (!hit.collider.CompareTag(cycle.GetColor()) && !hit.collider.CompareTag("Platform"))
-            {
-                PlayerDeath();
-            }
-    }
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 0.52f);
+        if (hit.collider != null)
+        {
+            if (!hit.collider.CompareTag(cycle.GetColor()) && !hit.collider.CompareTag("Platform"))
+                {
+                    PlayerDeath();
+                }
+        }
         checkColor = false;
-}
+    }
 
+    // Shoot projectile by instantiating projectile object to left or right of player
     void ShootProjectile(float inputDirection)
     {
         if (!canShoot)
@@ -142,7 +156,7 @@ void CheckColor()
         Invoke(nameof(ResetShoot), projectileTimer);
     }
 
-
+    // wait for (projectileTimer) seconds before allowing the player to shoot again
     void ResetShoot()
     {
         canShoot = true;

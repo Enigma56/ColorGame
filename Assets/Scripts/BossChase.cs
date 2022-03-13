@@ -17,12 +17,6 @@ public class BossChase : MonoBehaviour
         StartCoroutine(startChase(timeBeforeStart));
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     IEnumerator startChase(float wait)
     {
         yield return new WaitForSeconds(wait);

@@ -12,7 +12,7 @@ public class ColorCycle : MonoBehaviour
     int currentColorIndex;
 
     Vector4[] colorVectors = new Vector4[3];
-    Vector2 orbPosition1 = new Vector2(0, 2f);  // Directly above, used for 2 orbs and 4 orbs
+    Vector2 orbPosition1 = new Vector2(0, 2f);  // Directly above, used for 2 orbs
     Vector2 orbPosition2 = new Vector2(Mathf.Sqrt(3)/2, 1.5f);
     Vector2 orbPosition3 = new Vector2(-Mathf.Sqrt(3)/2, 1.5f);
 
@@ -32,14 +32,7 @@ public class ColorCycle : MonoBehaviour
         spinning = false;
     }
 
-    private void Update()
-    {
-        if (Input.GetKey(KeyCode.LeftShift))
-        {
-            Rotate();
-        }
-    }
-
+    // Function when player touches a color
     public void PickUpColor(string color)
     {
         currentColorIndex = colors.Count;
@@ -48,6 +41,7 @@ public class ColorCycle : MonoBehaviour
         PositionOrbs();
     }
 
+    // determine how to position the orbs when the player picks up a new color
     void PositionOrbs() {
         for (int active = 0; active < currentColorIndex; active++)
         {
@@ -69,20 +63,7 @@ public class ColorCycle : MonoBehaviour
         }
     }
 
-    IEnumerator TestPickup()
-    {
-        yield return new WaitForSeconds(2f);
-        Debug.Log("cyan");
-        PickUpColor("cyan");
-        yield return new WaitForSeconds(4f);
-        Debug.Log("yellow");
-        PickUpColor("yellow");
-        yield return new WaitForSeconds(4f);
-        Debug.Log("purple");
-        PickUpColor("purple");
-        yield return new WaitForSeconds(4f);
-    }
-
+    // Get the current player color
     public string GetColor()
     {
         if (colors.Count != 0)
@@ -92,6 +73,7 @@ public class ColorCycle : MonoBehaviour
         return null;
     }
 
+    // Function to trigger rotation coroutine, ensuring it happens once
     public void Rotate()
     {
         if (!spinning && colors.Count > 1)
@@ -100,6 +82,7 @@ public class ColorCycle : MonoBehaviour
         }
     }
 
+    // Coroutine to rotate orbs around the player and change their color
     IEnumerator RotateOrbs()
     {
         spinning = true;

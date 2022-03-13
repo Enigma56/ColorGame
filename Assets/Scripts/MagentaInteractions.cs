@@ -41,12 +41,13 @@ public class MagentaInteractions : MonoBehaviour
         }
     }
 
+    // Make door disappear for 6.5 seconds
     IEnumerator UnlockDoor()
     {
         doorOpen = true;
         door.GetComponent<SpriteRenderer>().enabled = false;
         door.GetComponent<Collider2D>().enabled = false;
-        yield return new WaitForSecondsRealtime(6f);
+        yield return new WaitForSecondsRealtime(6.5f);
         door.GetComponent<SpriteRenderer>().enabled = true;
         door.GetComponent<Collider2D>().enabled = true;
         doorOpen = false;
