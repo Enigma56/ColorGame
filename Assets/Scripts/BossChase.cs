@@ -7,6 +7,8 @@ public class BossChase : MonoBehaviour
     public float startSpeed;
     public float speedIncrement;
     public float timeBeforeStart;
+    public GameObject player;
+    public int tailDistance;
 
     Rigidbody2D rb;
 
@@ -15,6 +17,15 @@ public class BossChase : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         StartCoroutine(startChase(timeBeforeStart));
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (rb.position.x < player.GetComponent<Rigidbody2D>().position.x - tailDistance)
+        {
+            rb.position = new Vector2(player.GetComponent<Rigidbody2D>().position.x - tailDistance, rb.position.y);
+        }
     }
 
     IEnumerator startChase(float wait)
