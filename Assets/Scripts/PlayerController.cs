@@ -53,7 +53,7 @@ public class PlayerController : MonoBehaviour
             }
 
             // Trigger color change
-            if (Input.GetKey(KeyCode.LeftShift))
+            if (Input.GetKeyDown(KeyCode.LeftShift))
             {
                 cycle.Rotate();
                 if (!checkColor)
@@ -127,14 +127,17 @@ public class PlayerController : MonoBehaviour
     void CheckColor()
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 0.52f);
-        if (hit.collider != null)
-        {
-            if (!hit.collider.CompareTag(cycle.GetColor()) && !hit.collider.CompareTag("Platform"))
-                {
-                    PlayerDeath();
-                }
-        }
         checkColor = false;
+        
+        //Changed by Charles
+        if (hit.collider == null) //guard clause for cleaner code
+            return;
+        
+        if (!hit.collider.CompareTag(cycle.GetColor()) && !hit.collider.CompareTag("Platform"))
+        {
+            PlayerDeath();
+        }
+        
     }
 
     // Shoot projectile by instantiating projectile object to left or right of player
@@ -195,14 +198,13 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
+        if (other.gameObject.CompareTag("Platform"))
+            return;
+        
         if (other.gameObject.CompareTag("Obstacle")){
             PlayerDeath();
         }
-        else if (other.gameObject.CompareTag("Platform"))
-        {
-            return;
-        }
-        else if (other.gameObject.tag != cycle.GetColor())
+        else if (!other.gameObject.tag.Equals(cycle.GetColor()))
         {
             PlayerDeath();
         }
@@ -217,5 +219,4 @@ public class PlayerController : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
-
 }
