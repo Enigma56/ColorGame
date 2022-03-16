@@ -35,13 +35,11 @@ public class PlayerController : MonoBehaviour
             float input = Input.GetAxis("Horizontal");
             float xMovement = input * speed;
             vel.x = xMovement;
-
             // Trigger jump --> Double jump if cyan
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 vel = Jump(vel);
             }
-
             // If player color is yellow --> increase speed
             if (cycle.GetColor() == "yellow")
             {
@@ -51,39 +49,40 @@ public class PlayerController : MonoBehaviour
             {
                 speed = 5f;
             }
-
             // Trigger color change
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
-                cycle.Rotate();
-                if (!checkColor)
-                {
-                    checkColor = true;
-                    Invoke(nameof(CheckColor), 0.5f);
-                }
+                TriggerCycle();
             }
-
             // Track last input in order to fire projectile in the direction the player last moved
             if (input != 0)
             {
                 lastInput = input;
             }
-
             // trigger firing projectile in the direction the player is moving (default right)
             if (Input.GetKey(KeyCode.RightShift) && cycle.GetColor() == "magenta")
             {
                 ShootProjectile(lastInput);
             }
-
             // Check jump reset
             if (checkJump && jumpNumber > 0)
             {
                 CheckJump();
             }
-
             rb2D.velocity = vel;
         }
     }
+
+    public void TriggerCycle()
+    {
+        cycle.Rotate();
+        if (!checkColor)
+        {
+            checkColor = true;
+            Invoke(nameof(CheckColor), 0.5f);
+        }
+    }
+
 
     // Jump function that checks conditions and boosts y velocity
     Vector2 Jump(Vector2 velocity)
@@ -115,8 +114,8 @@ public class PlayerController : MonoBehaviour
     // Fire raycasts down to see if player is ontop of a platform, in which case reset jumps
     void CheckJump()
     {
-        RaycastHit2D hitLeft = Physics2D.Raycast(transform.position + (Vector3.left * 0.5f), Vector2.down, 0.52f);
-        RaycastHit2D hitRight = Physics2D.Raycast(transform.position + (Vector3.right * 0.5f), Vector2.down, 0.52f);
+        RaycastHit2D hitLeft = Physics2D.Raycast(transform.position + (Vector3.left * 0.4f), Vector2.down, 0.52f);
+        RaycastHit2D hitRight = Physics2D.Raycast(transform.position + (Vector3.right * 0.4f), Vector2.down, 0.52f);
         if (hitLeft.collider != null || hitRight.collider != null)
         {
             jumpNumber = 0;
@@ -124,7 +123,7 @@ public class PlayerController : MonoBehaviour
     }
 
     // When player shifts color, check to see player color matches platform they are on
-    void CheckColor()
+    public void CheckColor()
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 0.52f);
         checkColor = false;
@@ -169,18 +168,24 @@ public class PlayerController : MonoBehaviour
     {
         if (other.CompareTag("CyanOrb"))
         {
+            movementLocked = true;
             cycle.PickUpColor("cyan");
             Destroy(other.gameObject);
+            Invoke(nameof(FreeMovement), 6f);
         }
         else if (other.CompareTag("YellowOrb"))
         {
+            movementLocked = true;
             cycle.PickUpColor("yellow");
             Destroy(other.gameObject);
+            Invoke(nameof(FreeMovement), 6f);
         }
         else if (other.CompareTag("MagentaOrb"))
         {
+            movementLocked = true;
             cycle.PickUpColor("magenta");
             Destroy(other.gameObject);
+            Invoke(nameof(FreeMovement), 6f);
         }
         else if (other.CompareTag("Boss"))
         {
@@ -194,6 +199,12 @@ public class PlayerController : MonoBehaviour
         {
             StageComplete();
         }
+        rb2D.velocity = Vector2.zero;
+    }
+
+    void FreeMovement()
+    {
+        movementLocked = false;
     }
 
     private void OnCollisionEnter2D(Collision2D other)

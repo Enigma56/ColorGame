@@ -7,6 +7,7 @@ public class ColorCycle : MonoBehaviour
 {
     public bool startCyan, startYellow, startMagenta;
     public GameObject[] orbs;
+    public Animator pickupAnimation;
     List<string> colors = new List<string>();
     SpriteRenderer spriteRenderer;
 
@@ -36,6 +37,10 @@ public class ColorCycle : MonoBehaviour
     // Function when player touches a color
     public void PickUpColor(string color) //TODO: Change player color on pickup of an orb
     {
+        if (pickupAnimation != null)
+        {
+            pickupAnimation.enabled = true;
+        }
         currentColorIndex = colors.Count;
         spriteRenderer.color = colorVectors[currentColorIndex];
         colors.Add(color);
