@@ -10,6 +10,7 @@ public class ColorCycle : MonoBehaviour
     public float rotationTime;
     List<string> colors = new List<string>();
     SpriteRenderer spriteRenderer;
+    public Animator pickupAnimation;
 
     int currentColorIndex;
 
