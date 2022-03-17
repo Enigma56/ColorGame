@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -37,8 +38,12 @@ public class ColorCycle : MonoBehaviour
     }
 
     // Function when player touches a color
-    public void PickUpColor(string color)
+    public void PickUpColor(string color) //TODO: Change player color on pickup of an orb
     {
+        if (pickupAnimation != null)
+        {
+            pickupAnimation.enabled = true;
+        }
         currentColorIndex = colors.Count;
         spriteRenderer.color = colorVectors[currentColorIndex];
         colors.Add(color);
@@ -71,9 +76,8 @@ public class ColorCycle : MonoBehaviour
     public string GetColor()
     {
         if (colors.Count != 0)
-        {
             return colors[currentColorIndex];
-        }
+        
         return null;
     }
 
@@ -89,6 +93,7 @@ public class ColorCycle : MonoBehaviour
     // Coroutine to rotate orbs around the player and change their color
     IEnumerator RotateOrbs()
     {
+        var colorStart = orbs[currentColorIndex].GetComponent<SpriteRenderer>().color;
         spinning = true;
         orbs[currentColorIndex].transform.localPosition = Vector2.zero;
         orbs[currentColorIndex].GetComponent<Renderer>().enabled = true;
@@ -103,9 +108,24 @@ public class ColorCycle : MonoBehaviour
 
             yield return new WaitForEndOfFrame();
         }
-        currentColorIndex = (currentColorIndex + 1) % colors.Count;
-        orbs[currentColorIndex].GetComponent<Renderer>().enabled = false;
-        spriteRenderer.color = colorVectors[currentColorIndex];
+        
+        currentColorIndex = (currentColorIndex + 1) % colors.Count; 
+        orbs[currentColorIndex].GetComponent<Renderer>().enabled = false; 
+        //spriteRenderer.color = colorVectors[currentColorIndex];
+        
+        var colorEnd = orbs[currentColorIndex].GetComponent<SpriteRenderer>().color;
+        StartCoroutine(ColorChangeAnimation(colorStart, colorEnd, .25f));
+        
         spinning = false;
+    }
+    
+    IEnumerator ColorChangeAnimation(Color start, Color end, float duration) {
+        for (float t = 0f; t<duration; t += Time.deltaTime) {
+            float normalizedTime = t/duration;
+            //right here, you can now use normalizedTime as the third parameter in any Lerp from start to end
+            spriteRenderer.color = Color.Lerp(start, end, normalizedTime);
+            yield return null;
+        }
+        spriteRenderer.color = end; //without this, the value will end at something like 0.9992367
     }
 }

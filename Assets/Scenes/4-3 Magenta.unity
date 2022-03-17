@@ -46401,11 +46401,11 @@ PrefabInstance:
     - target: {fileID: 6120609560464217344, guid: 70263fab903194fb38c893709fd1bf4d, type: 3}
       propertyPath: Lock
       value: 
-      objectReference: {fileID: 1117311004}
+      objectReference: {fileID: 464217390}
     - target: {fileID: 6120609560464217344, guid: 70263fab903194fb38c893709fd1bf4d, type: 3}
       propertyPath: door
       value: 
-      objectReference: {fileID: 1105662023}
+      objectReference: {fileID: 1414298239}
     - target: {fileID: 6120609560464217345, guid: 70263fab903194fb38c893709fd1bf4d, type: 3}
       propertyPath: m_Name
       value: Key Target (4)
@@ -47349,11 +47349,11 @@ PrefabInstance:
     - target: {fileID: 6120609560464217344, guid: 70263fab903194fb38c893709fd1bf4d, type: 3}
       propertyPath: Lock
       value: 
-      objectReference: {fileID: 464217390}
+      objectReference: {fileID: 1117311004}
     - target: {fileID: 6120609560464217344, guid: 70263fab903194fb38c893709fd1bf4d, type: 3}
       propertyPath: door
       value: 
-      objectReference: {fileID: 1414298239}
+      objectReference: {fileID: 1105662023}
     - target: {fileID: 6120609560464217345, guid: 70263fab903194fb38c893709fd1bf4d, type: 3}
       propertyPath: m_Name
       value: Key Target (2)
