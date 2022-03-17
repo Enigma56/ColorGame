@@ -228,6 +228,13 @@ public class PlayerController : MonoBehaviour
 
     void StageComplete()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        if (AudioSingleton.instance != null)
+        {
+            AudioSingleton.NextScene();
+        }
+        else
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
     }
 }

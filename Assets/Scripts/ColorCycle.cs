@@ -7,7 +7,7 @@ public class ColorCycle : MonoBehaviour
 {
     public bool startCyan, startYellow, startMagenta;
     public GameObject[] orbs;
-    public float rotationTime;
+    public float rotation;
     List<string> colors = new List<string>();
     SpriteRenderer spriteRenderer;
     public Animator pickupAnimation;
@@ -35,7 +35,7 @@ public class ColorCycle : MonoBehaviour
 
         spinning = false;
 
-        timer = rotationTime;
+        timer = rotation;
     }
 
     // Function when player touches a color
@@ -99,12 +99,12 @@ public class ColorCycle : MonoBehaviour
         orbs[currentColorIndex].transform.localPosition = Vector2.zero;
         orbs[currentColorIndex].GetComponent<Renderer>().enabled = true;
 
-        for (int angle = 0; angle < 360 / colors.Count; angle += Mathf.RoundToInt(rotationTime * Time.deltaTime))
+        for (int angle = 0; angle < 360 / colors.Count; angle += Mathf.RoundToInt(rotation * Time.deltaTime))
         {
             for (int orb = 0; orb < colors.Count; orb++)
             {
                 Vector2 pivot = GetComponentInParent<Transform>().localPosition + Vector3.up;
-                orbs[orb].transform.RotateAround(pivot, Vector3.forward, -Mathf.RoundToInt(rotationTime * Time.deltaTime) /* duration*/);
+                orbs[orb].transform.RotateAround(pivot, Vector3.forward, -Mathf.RoundToInt(rotation * Time.deltaTime));
             }
 
             yield return new WaitForEndOfFrame();

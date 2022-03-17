@@ -540,6 +540,10 @@ MonoBehaviour:
   globalMaxY: 7
   globalMinX: -10
   globalMinY: -25
+  shakeTimeStandardStrong: 0.5
+  strengthStandardStrong: 0.5
+  shakeTimeStandardLight: 0.2
+  strengthStandardLight: 0.2
 --- !u!1001 &654971253
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -35994,6 +35998,10 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 1031065515432952590, guid: 10f11dd74cbbb40e782a1ee58196d29f, type: 3}
+      propertyPath: rotation
+      value: 480
+      objectReference: {fileID: 0}
+    - target: {fileID: 1031065515432952590, guid: 10f11dd74cbbb40e782a1ee58196d29f, type: 3}
       propertyPath: startCyan
       value: 1
       objectReference: {fileID: 0}
@@ -36089,7 +36097,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 13754310142486454, guid: 7fdfef15c89524f86b6fce9424cef435, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 46.8034
+      value: 45.65
       objectReference: {fileID: 0}
     - target: {fileID: 13754310142486454, guid: 7fdfef15c89524f86b6fce9424cef435, type: 3}
       propertyPath: m_LocalPosition.y

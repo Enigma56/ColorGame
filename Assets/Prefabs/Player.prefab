@@ -265,10 +265,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7631c0408b8f4336bae3ac082c2d134, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startCyan: 0
+  startYellow: 0
+  startMagenta: 0
   orbs:
   - {fileID: 1031065515800102663}
   - {fileID: 1031065515167266269}
   - {fileID: 1031065515342929008}
+  rotation: 360
+  pickupAnimation: {fileID: 0}
 --- !u!50 &1031065515432952587
 Rigidbody2D:
   serializedVersion: 4
@@ -330,7 +335,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   jumpForce: 7
-  projectileTimer: 2
+  projectileTimer: 0.5
   movementLocked: 0
   cycle: {fileID: 1031065515432952590}
   projectile: {fileID: 4114377269475263857, guid: eff9cdfd29d4344cab9f6bef40059090, type: 3}
