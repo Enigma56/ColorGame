@@ -42,6 +42,7 @@ public class BossFight : MonoBehaviour
             yield return new WaitForSeconds(0.25f);
             warning.enabled = true;
             yield return new WaitForSeconds(0.25f);
+            AudioSingleton.Play("bossSlam");
             pc.TriggerCycle();
             camera.ScreenShakeLight();
             warning.enabled = false;
@@ -61,7 +62,6 @@ public class BossFight : MonoBehaviour
             rightFist.transform.localPosition = new Vector3(10, y * 4f, 0);
             yield return null;
         }
-        AudioSingleton.Play("bossSlam");
         leftFist.transform.localPosition = new Vector3(-10, -4, 0);
         rightFist.transform.localPosition = new Vector3(10, -4, 0);
         yield return new WaitForSeconds(0.1f);

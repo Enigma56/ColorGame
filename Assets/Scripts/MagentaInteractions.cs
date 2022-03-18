@@ -50,6 +50,7 @@ public class MagentaInteractions : MonoBehaviour
     // Make door disappear for 6.5 seconds with other effects
     IEnumerator UnlockDoor()
     {
+        AudioSingleton.Play("WallBreak");
         Vector3 doorScale = new Vector3(1.15f, 1, 1);
         for (int i = 2; i < 90; i += 2)
         {

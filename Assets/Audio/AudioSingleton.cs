@@ -89,11 +89,16 @@ public class AudioSingleton : MonoBehaviour
             Stop(_instance.activeSound);
             Play("MagentaStagesMusic");
         }
-        else if (scene == 14)
+        else if (scene == 15)
         {
             Stop(_instance.activeSound);
             Play("BossMusic");
             FindObjectOfType<CameraMovement>().zoomOut();
+        }
+        else if (scene == 16)
+        {
+            Stop(_instance.activeSound);
+            Play("MenuMusic");
         }
     }
 }
