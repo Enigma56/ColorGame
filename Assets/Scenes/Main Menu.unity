@@ -409,40 +409,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - name: MenuMusic
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 53b6284a4ee9946e7953da55e0fe28a0, type: 3}
     volume: 1
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - name: IntroStagesMusic
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 3e43eadd664cd41daaa4f37b88f5439f, type: 3}
     volume: 1
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - name: CyanStagesMusic
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 5164ff365800845b2ae55f687e8eec15, type: 3}
     volume: 1
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - name: YellowStagesMusic
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 1fccc17afceb7432e9d6adc00a512eff, type: 3}
     volume: 1
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - name: MagentaStagesMusic
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: c28cf82333b964769897c2239d678e25, type: 3}
     volume: 1
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - name: BossMusic
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: b2e31d4ea640f4690a423e80bf02f67f, type: 3}
     volume: 1
     pitch: 1
-    loop: 0
+    loop: 1
     source: {fileID: 0}
   - name: WallBreak
     clip: {fileID: 0}

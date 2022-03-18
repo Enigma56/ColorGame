@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: -2694101185877434007}
   - component: {fileID: -8481452812490015002}
   - component: {fileID: 2380890988344339896}
+  - component: {fileID: -2738307142398223729}
   m_Layer: 0
   m_Name: Moving Platform
   m_TagString: Untagged
@@ -151,3 +152,16 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   rb2d: {fileID: 0}
+--- !u!114 &-2738307142398223729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4155239659211160685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee0ad7ab246c24c3cbc46b90e280eb44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocity: {x: 0, y: 0, z: 0}
