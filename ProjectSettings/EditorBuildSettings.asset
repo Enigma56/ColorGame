@@ -5,7 +5,55 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Main Menu.unity
+    guid: f7bff422304014c3fb48a49e5f379600
+  - enabled: 1
+    path: Assets/Scenes/1-1 Intro.unity
+    guid: 5d626180a88d5234194c2b5a31231de1
+  - enabled: 1
+    path: Assets/Scenes/1-2 Intro.unity
+    guid: 6477078277b1e51459bb1cec35dbb805
+  - enabled: 1
+    path: Assets/Scenes/2-1 Cyan Scene.unity
+    guid: 23dfee2c7e3621d4ea60a11f8be75f65
+  - enabled: 1
+    path: Assets/Scenes/2-2 Cyan Scene.unity.unity
+    guid: 47c35024441e941478014b20e02a6c37
+  - enabled: 1
+    path: Assets/Scenes/2-3 Cyan Scene.unity
+    guid: f8f1136049287435e8f6eebddd50bd1c
+  - enabled: 1
+    path: Assets/Scenes/3-1 Boss Chase.unity
+    guid: f1d7c84d012bd45db84e7ab4205f934c
+  - enabled: 1
+    path: Assets/Scenes/3-2 Boss Chase.unity
+    guid: 483bc7868ac7f0646a264ab1ce8fb1e7
+  - enabled: 1
+    path: Assets/Scenes/3-3 Boss Chase.unity
+    guid: 040fc8191c9d6714987dc2b99842e218
+  - enabled: 1
+    path: Assets/Scenes/3-Exit Boss Chase.unity
+    guid: 9498d44f8300d93409cadbc91d88c3d4
+  - enabled: 1
+    path: Assets/Scenes/4-1 Magenta.unity
+    guid: 056caf458949e4d068fde07afb79f39c
+  - enabled: 1
+    path: Assets/Scenes/4-2 Magenta.unity
+    guid: c058859a1dd514123aa658fe0736485f
+  - enabled: 1
+    path: Assets/Scenes/4-3 Magenta.unity
+    guid: cb7645be5d2614509ac9de87ac3f457e
+  - enabled: 1
+    path: Assets/Scenes/4-4 Magenta.unity
+    guid: 89909656878254bd5b890d918c86c6ca
+  - enabled: 1
+    path: Assets/Scenes/5 Final Boss.unity
+    guid: c3ebc710b7dc148e7a4f0dc78b37420e
+  - enabled: 1
+    path: Assets/Scenes/Final Credits.unity
+    guid: 8b7744cfb9b9648d3953f1369ce377e8
   m_configObjects: {}

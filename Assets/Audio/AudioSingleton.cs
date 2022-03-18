@@ -44,7 +44,7 @@ public class AudioSingleton : MonoBehaviour
             s.source.loop = s.loop;
         }
 
-        //Play(MenuMusic);
+        Play("MenuMusic");
     }
 
     public static void Play(string name)
@@ -67,28 +67,32 @@ public class AudioSingleton : MonoBehaviour
 
     public static void NextScene()
     {
-        Stop(_instance.activeSound);
         int scene = SceneManager.GetActiveScene().buildIndex + 1;
         SceneManager.LoadScene(scene);
         if (scene == 1)
         {
-            //Play(IntroStagesMusic);
+            Stop(_instance.activeSound);
+            Play("IntroStagesMusic");
         }
         else if (scene == 3)
         {
-            //Play(CyanStagesMusic);
+            Stop(_instance.activeSound);
+            Play("CyanStagesMusic");
         }
         else if (scene == 6) // may need to change
         {
-            //Play(YellowStagesMusic);
+            Stop(_instance.activeSound);
+            Play("YellowStagesMusic");
         }
         else if (scene == 10)
         {
-            //Play(MagentaStagesMusic);
+            Stop(_instance.activeSound);
+            Play("MagentaStagesMusic");
         }
         else if (scene == 14)
         {
-            //Play(BossMusic);
+            Stop(_instance.activeSound);
+            Play("BossMusic");
             FindObjectOfType<CameraMovement>().zoomOut();
         }
     }

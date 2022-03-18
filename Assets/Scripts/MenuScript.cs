@@ -11,7 +11,14 @@ public class MenuScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(Opening());
+        if (SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            StartCoroutine(Opening());
+        }
+        else
+        {
+            StartCoroutine(Closing());
+        }
     }
 
     // Update is called once per frame
@@ -22,7 +29,7 @@ public class MenuScript : MonoBehaviour
 
     public void Play()
     {
-        SceneManager.LoadScene(1);
+        AudioSingleton.NextScene();
     }
 
     public void Quit()
@@ -35,6 +42,12 @@ public class MenuScript : MonoBehaviour
         yield return new WaitForSeconds(14);
         vp.clip = titleAnimation;
         vp.isLooping = true;
+    }
+
+    IEnumerator Closing()
+    {
+        yield return new WaitForSeconds(34);
+        SceneManager.LoadScene(0);
     }
 }
 

@@ -92,7 +92,7 @@ public class BossFight : MonoBehaviour
         bossLives++;
         if (bossLives == 3)
         {
-            // game ends
+            AudioSingleton.NextScene();
             yield return null;
         }
         else {
