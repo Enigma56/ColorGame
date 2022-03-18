@@ -6,7 +6,7 @@ using UnityEngine;
 public class ColorCycle : MonoBehaviour
 {
     public bool startCyan, startYellow, startMagenta;
-    public GameObject[] orbs;
+    public GameObject[] orbs; //Capacity is "3 orbs"
     public float rotation;
     List<string> colors = new List<string>();
     SpriteRenderer spriteRenderer;
