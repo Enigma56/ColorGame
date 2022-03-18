@@ -1943,6 +1943,18 @@ PrefabInstance:
       propertyPath: startCyan
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1031065515432952590, guid: 10f11dd74cbbb40e782a1ee58196d29f, type: 3}
+      propertyPath: startYellow
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1031065515432952590, guid: 10f11dd74cbbb40e782a1ee58196d29f, type: 3}
+      propertyPath: rotationTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1031065515432952590, guid: 10f11dd74cbbb40e782a1ee58196d29f, type: 3}
+      propertyPath: startMagenta
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1031065515800102656, guid: 10f11dd74cbbb40e782a1ee58196d29f, type: 3}
       propertyPath: m_Enabled
       value: 0
