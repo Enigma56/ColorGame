@@ -61,6 +61,7 @@ public class BossFight : MonoBehaviour
             rightFist.transform.localPosition = new Vector3(10, y * 4f, 0);
             yield return null;
         }
+        AudioSingleton.Play("bossSlam");
         leftFist.transform.localPosition = new Vector3(-10, -4, 0);
         rightFist.transform.localPosition = new Vector3(10, -4, 0);
         yield return new WaitForSeconds(0.1f);
@@ -81,6 +82,7 @@ public class BossFight : MonoBehaviour
         }
         leftFist.transform.localPosition = new Vector3(-10, -4, 0);
         rightFist.transform.localPosition = new Vector3(10, -4, 0);
+        AudioSingleton.Play("bossSlam");
         camera.ScreenShakeStrong();
         tileMaps[bossLives].SetActive(false);
         if (bossLives == 0)

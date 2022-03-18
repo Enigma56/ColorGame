@@ -32,6 +32,7 @@ public class AudioSingleton : MonoBehaviour
             Destroy(_instance.gameObject);
         }
         _instance = this;
+        DontDestroyOnLoad(_instance);
 
         foreach (Sound s in sounds)
         {

@@ -41,6 +41,7 @@ public class MagentaInteractions : MonoBehaviour
         GetComponent<SpriteRenderer>().enabled = false;
         GetComponent<Collider2D>().enabled = false;
         breakEffect.Play();
+        AudioSingleton.Play("WallBreak");
         yield return new WaitForSeconds(1);
         Destroy(gameObject);
     }
