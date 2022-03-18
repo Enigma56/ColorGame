@@ -272,7 +272,7 @@ MonoBehaviour:
   - {fileID: 1031065515800102663}
   - {fileID: 1031065515167266269}
   - {fileID: 1031065515342929008}
-  rotation: 360
+  rotation: 1000
   pickupAnimation: {fileID: 0}
 --- !u!50 &1031065515432952587
 Rigidbody2D:
@@ -339,7 +339,9 @@ MonoBehaviour:
   movementLocked: 0
   cycle: {fileID: 1031065515432952590}
   projectile: {fileID: 4114377269475263857, guid: eff9cdfd29d4344cab9f6bef40059090, type: 3}
-  deathEffect: {fileID: 3529748249405595463, guid: 723167d87daa4ef4da22a1b819be179a, type: 3}
+  yellowEffect: {fileID: 4076743670578690180, guid: 14553942a204b6e4eb0f0d0ff9946875, type: 3}
+  cyanEffect: {fileID: 721386894455329520, guid: 9647bb8d3d409c548a4f50ad5426e1c6, type: 3}
+  magentaEffect: {fileID: 1617542381562664550, guid: b9048b35a61295a46829ac8214631f68, type: 3}
 --- !u!1 &1031065515800102663
 GameObject:
   m_ObjectHideFlags: 0

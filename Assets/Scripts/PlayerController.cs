@@ -11,7 +11,9 @@ public class PlayerController : MonoBehaviour
     public bool movementLocked;
     public ColorCycle cycle;
     public GameObject projectile;
-    public ParticleSystem deathEffect;
+    public ParticleSystem yellowEffect;
+    public ParticleSystem cyanEffect;
+    public ParticleSystem magentaEffect;
 
     bool checkJump, checkColor, canShoot, active;
     Rigidbody2D rb2D;
@@ -235,8 +237,23 @@ public class PlayerController : MonoBehaviour
         rb2D.velocity = Vector2.zero;
         GetComponent<Collider2D>().enabled = false;
         rb2D.isKinematic = true;
-        deathEffect.transform.position = transform.position;
-        deathEffect.Play();
+
+        if (cycle.GetColor() == "yellow")
+        {
+            yellowEffect.transform.position = transform.position;
+            yellowEffect.Play();
+        }
+        else if (cycle.GetColor() == "cyan")
+        {
+            cyanEffect.transform.position = transform.position;
+            cyanEffect.Play();
+        }
+        else if (cycle.GetColor() == "magenta")
+        {
+            magentaEffect.transform.position = transform.position;
+            magentaEffect.Play();
+        }
+
         StartCoroutine(Reset());
     }
 
