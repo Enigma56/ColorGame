@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     int jumpNumber;
     float lastInput;
 
-
+    private float _lockTime = 6f;
     // Start is called before the first frame update
     void Start()
     {
@@ -173,21 +173,21 @@ public class PlayerController : MonoBehaviour
             movementLocked = true;
             cycle.PickUpColor("cyan");
             //Destroy(other.gameObject);
-            Invoke(nameof(FreeMovement), 6f);
+            Invoke(nameof(FreeMovement), _lockTime);
         }
         else if (other.CompareTag("YellowOrb"))
         {
             movementLocked = true;
             cycle.PickUpColor("yellow");
             //Destroy(other.gameObject);
-            Invoke(nameof(FreeMovement), 6f);
+            Invoke(nameof(FreeMovement), _lockTime);
         }
         else if (other.CompareTag("MagentaOrb"))
         {
             movementLocked = true;
             cycle.PickUpColor("magenta");
             //Destroy(other.gameObject);
-            Invoke(nameof(FreeMovement), 6f);
+            Invoke(nameof(FreeMovement), _lockTime);
         }
         else if (other.CompareTag("Boss"))
         {

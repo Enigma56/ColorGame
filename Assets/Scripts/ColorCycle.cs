@@ -34,12 +34,11 @@ public class ColorCycle : MonoBehaviour
         if (startMagenta) { PickUpColor("magenta"); }
 
         spinning = false;
-
         timer = rotation;
     }
 
     // Function when player touches a color
-    public void PickUpColor(string color) //TODO: Change player color on pickup of an orb
+    public void PickUpColor(string color)
     {
         if (pickupAnimation != null)
         {

@@ -225,6 +225,10 @@ MonoBehaviour:
   globalMaxY: 7
   globalMinX: -10
   globalMinY: -5
+  shakeTimeStandardStrong: 0.5
+  strengthStandardStrong: 0.5
+  shakeTimeStandardLight: 0.2
+  strengthStandardLight: 0.2
 --- !u!1 &775772185
 GameObject:
   m_ObjectHideFlags: 0
@@ -282,7 +286,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: to Color Game!
+  m_text: to Undertone!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
