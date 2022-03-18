@@ -5,6 +5,7 @@ using UnityEngine;
 public class BossFight : MonoBehaviour
 {
     public GameObject[] tileMaps;
+    public GameObject[] coreOrbs;
     public GameObject bouncePlatforms;
     public GameObject magentaObjects;
 
@@ -28,6 +29,7 @@ public class BossFight : MonoBehaviour
         slamCycle = true;
         StartCoroutine(SlamEffect());
         StartCoroutine(SlamFists());
+        StartCoroutine(RotateCore());
     }
 
     IEnumerator SlamEffect()
@@ -71,6 +73,7 @@ public class BossFight : MonoBehaviour
     IEnumerator FastSlam()
     {
         float timer = 0;
+        coreOrbs[bossLives].GetComponent<SpriteRenderer>().enabled = false;
         while (timer < 1.9f && slamCycle)
         {
             float normalizedTime = timer / 2f;
@@ -116,6 +119,23 @@ public class BossFight : MonoBehaviour
         }
     }
 
+    IEnumerator RotateCore()
+    {
+        while (bossLives < 3)
+        {
+            for (float angle = 0; angle < 120; angle += bossLives * 3f)
+            {
+                for (int orb = 0; orb < 3; orb++)
+                {
+                    Vector2 pivot = Vector2.up * 14f;
+                    coreOrbs[orb].transform.RotateAround(pivot, Vector3.forward, angle);
+                }
+
+                yield return new WaitForEndOfFrame();
+            }
+        }
+    }
+
     public void SpikeFalls()
     {
         camera.zoomOut();
@@ -127,6 +147,7 @@ public class BossFight : MonoBehaviour
     public void SpikeLands()
     {
         StopAllCoroutines();
+        StartCoroutine(RotateCore());
         StartCoroutine(FastSlam());
         camera.ScreenShakeStrong();
     }

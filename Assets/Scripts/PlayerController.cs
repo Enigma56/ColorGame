@@ -173,21 +173,21 @@ public class PlayerController : MonoBehaviour
         if (other.CompareTag("CyanOrb"))
         {
             movementLocked = true;
-            cycle.PickUpColor("cyan");
+            cycle.PickUpColor("cyan", true);
             Destroy(other.gameObject);
             Invoke(nameof(FreeMovement), _lockTime);
         }
         else if (other.CompareTag("YellowOrb"))
         {
             movementLocked = true;
-            cycle.PickUpColor("yellow");
+            cycle.PickUpColor("yellow", true);
             Destroy(other.gameObject);
             Invoke(nameof(FreeMovement), _lockTime);
         }
         else if (other.CompareTag("MagentaOrb"))
         {
             movementLocked = true;
-            cycle.PickUpColor("magenta");
+            cycle.PickUpColor("magenta", true);
             Destroy(other.gameObject);
             Invoke(nameof(FreeMovement), _lockTime);
         }

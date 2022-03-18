@@ -29,18 +29,18 @@ public class ColorCycle : MonoBehaviour
         colorVectors[0] = new Vector4(0, 1, 1, 1);
         colorVectors[1] = new Vector4(1, 1, 0, 1);
         colorVectors[2] = new Vector4(1, 0, 1, 1);
-        if (startCyan) { PickUpColor("cyan"); }
-        if (startYellow) { PickUpColor("yellow"); }
-        if (startMagenta) { PickUpColor("magenta"); }
+        if (startCyan) { PickUpColor("cyan", false); }
+        if (startYellow) { PickUpColor("yellow", false); }
+        if (startMagenta) { PickUpColor("magenta", false); }
 
         spinning = false;
         timer = rotation;
     }
 
     // Function when player touches a color
-    public void PickUpColor(string color)
+    public void PickUpColor(string color, bool animation)
     {
-        if (pickupAnimation != null)
+        if (pickupAnimation != null && animation)
         {
             pickupAnimation.enabled = true;
         }
@@ -109,7 +109,16 @@ public class ColorCycle : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         
-        currentColorIndex = (currentColorIndex + 1) % colors.Count; 
+        currentColorIndex = (currentColorIndex + 1) % colors.Count;
+        if (colors.Count == 2)
+        {
+            orbs[(currentColorIndex + 1) % colors.Count].transform.localPosition = orbPosition1;
+        }
+        if (colors.Count == 3)
+        {
+            orbs[(currentColorIndex + 1) % colors.Count].transform.localPosition = orbPosition2;
+            orbs[(currentColorIndex + 2) % colors.Count].transform.localPosition = orbPosition3;
+        }
         orbs[currentColorIndex].GetComponent<Renderer>().enabled = false; 
         //spriteRenderer.color = colorVectors[currentColorIndex];
         
