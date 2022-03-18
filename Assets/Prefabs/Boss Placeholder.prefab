@@ -101,7 +101,7 @@ MonoBehaviour:
   speedIncrement: 0
   timeBeforeStart: 2
   player: {fileID: 0}
-  tailDistance: 10
+  tailDistance: 8
 --- !u!50 &4536220853737956433
 Rigidbody2D:
   serializedVersion: 4
