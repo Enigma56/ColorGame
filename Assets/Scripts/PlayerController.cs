@@ -11,8 +11,9 @@ public class PlayerController : MonoBehaviour
     public bool movementLocked;
     public ColorCycle cycle;
     public GameObject projectile;
+    public ParticleSystem deathEffect;
 
-    bool checkJump, checkColor, canShoot;
+    bool checkJump, checkColor, canShoot, active;
     Rigidbody2D rb2D;
     int jumpNumber;
     float lastInput;
@@ -24,12 +25,13 @@ public class PlayerController : MonoBehaviour
         rb2D = GetComponent<Rigidbody2D>();
         canShoot = true;
         checkColor = false;
+        active = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!movementLocked)
+        if (active && !movementLocked)
         {
             Vector2 vel = rb2D.velocity;
             float input = Input.GetAxis("Horizontal");
@@ -170,21 +172,21 @@ public class PlayerController : MonoBehaviour
         {
             movementLocked = true;
             cycle.PickUpColor("cyan");
-            Destroy(other.gameObject);
+            //Destroy(other.gameObject);
             Invoke(nameof(FreeMovement), 6f);
         }
         else if (other.CompareTag("YellowOrb"))
         {
             movementLocked = true;
             cycle.PickUpColor("yellow");
-            Destroy(other.gameObject);
+            //Destroy(other.gameObject);
             Invoke(nameof(FreeMovement), 6f);
         }
         else if (other.CompareTag("MagentaOrb"))
         {
             movementLocked = true;
             cycle.PickUpColor("magenta");
-            Destroy(other.gameObject);
+            //Destroy(other.gameObject);
             Invoke(nameof(FreeMovement), 6f);
         }
         else if (other.CompareTag("Boss"))
@@ -223,6 +225,24 @@ public class PlayerController : MonoBehaviour
 
     void PlayerDeath()
     {
+        active = false;
+        // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        GetComponent<SpriteRenderer>().enabled = false;
+        foreach (GameObject obj in cycle.orbs)
+        {
+            obj.GetComponent<SpriteRenderer>().enabled = false;
+        }
+        rb2D.velocity = Vector2.zero;
+        GetComponent<Collider2D>().enabled = false;
+        rb2D.isKinematic = true;
+        deathEffect.transform.position = transform.position;
+        deathEffect.Play();
+        StartCoroutine(Reset());
+    }
+
+    IEnumerator Reset()
+    {
+        yield return new WaitForSeconds(1.0f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 

@@ -20,24 +20,27 @@ public class CameraMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        Vector3 start = transform.position;
-        Vector3 goal = target.position + new Vector3(0.0f, 0.0f, -10);
-        float t = Time.deltaTime * speed;
-        Vector3 newPosition = Vector3.Lerp(start, goal, t);
-        float maxX = globalMaxX - Camera.main.orthographicSize * Camera.main.aspect;
-        float maxY = globalMaxY - Camera.main.orthographicSize;
-        float minX = globalMinX + Camera.main.orthographicSize * Camera.main.aspect;
-        float minY = globalMinY + Camera.main.orthographicSize;
-        newPosition.x = Mathf.Clamp(newPosition.x, minX, maxX);
-        newPosition.y = Mathf.Clamp(newPosition.y, minY, maxY);
-
-        if (screenShakeTimer > 0)
+        if (target != null)
         {
-            newPosition += Random.onUnitSphere * screenShakeStrength;
-            screenShakeTimer -= Time.deltaTime;
-        }
+            Vector3 start = transform.position;
+            Vector3 goal = target.position + new Vector3(0.0f, 0.0f, -10);
+            float t = Time.deltaTime * speed;
+            Vector3 newPosition = Vector3.Lerp(start, goal, t);
+            float maxX = globalMaxX - Camera.main.orthographicSize * Camera.main.aspect;
+            float maxY = globalMaxY - Camera.main.orthographicSize;
+            float minX = globalMinX + Camera.main.orthographicSize * Camera.main.aspect;
+            float minY = globalMinY + Camera.main.orthographicSize;
+            newPosition.x = Mathf.Clamp(newPosition.x, minX, maxX);
+            newPosition.y = Mathf.Clamp(newPosition.y, minY, maxY);
 
-        transform.position = newPosition;
+            if (screenShakeTimer > 0)
+            {
+                newPosition += Random.onUnitSphere * screenShakeStrength;
+                screenShakeTimer -= Time.deltaTime;
+            }
+
+            transform.position = newPosition;
+        }
     }
 
     //This draws the camera border in the scene view for easier viewing of the border

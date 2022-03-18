@@ -339,6 +339,7 @@ MonoBehaviour:
   movementLocked: 0
   cycle: {fileID: 1031065515432952590}
   projectile: {fileID: 4114377269475263857, guid: eff9cdfd29d4344cab9f6bef40059090, type: 3}
+  deathEffect: {fileID: 3529748249405595463, guid: 723167d87daa4ef4da22a1b819be179a, type: 3}
 --- !u!1 &1031065515800102663
 GameObject:
   m_ObjectHideFlags: 0

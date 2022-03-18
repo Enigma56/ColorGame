@@ -22,7 +22,7 @@ public class BossChase : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (rb.position.x < player.GetComponent<Rigidbody2D>().position.x - tailDistance)
+        if (player != null && rb.position.x < player.GetComponent<Rigidbody2D>().position.x - tailDistance)
         {
             rb.position = new Vector2(player.GetComponent<Rigidbody2D>().position.x - tailDistance, rb.position.y);
         }
