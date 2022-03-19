@@ -345,6 +345,7 @@ MonoBehaviour:
   yellowEffect: {fileID: 7563436621330883645}
   cyanEffect: {fileID: 3470954937130624304}
   magentaEffect: {fileID: 75072703486007396}
+  deathSound: {fileID: 8300000, guid: 8d0df6b99ccc4704f94e6b5d8e869ced, type: 3}
 --- !u!1 &1031065515800102663
 GameObject:
   m_ObjectHideFlags: 0

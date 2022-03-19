@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     public ParticleSystem yellowEffect;
     public ParticleSystem cyanEffect;
     public ParticleSystem magentaEffect;
+    public AudioClip deathSound;
 
     bool checkJump, checkColor, canShoot, active;
     Rigidbody2D rb2D;
@@ -132,16 +133,16 @@ public class PlayerController : MonoBehaviour
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 0.52f);
         checkColor = false;
-        
+
         //Changed by Charles
         if (hit.collider == null) //guard clause for cleaner code
             return;
-        
+
         if (!hit.collider.CompareTag(cycle.GetColor()) && !hit.collider.CompareTag("Platform"))
         {
             PlayerDeath();
         }
-        
+
     }
 
     // Shoot projectile by instantiating projectile object to left or right of player
@@ -216,8 +217,9 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Platform"))
             return;
-        
-        if (other.gameObject.CompareTag("Obstacle")){
+
+        if (other.gameObject.CompareTag("Obstacle"))
+        {
             PlayerDeath();
         }
         else if (!other.gameObject.tag.Equals(cycle.GetColor()))
@@ -238,6 +240,7 @@ public class PlayerController : MonoBehaviour
         rb2D.velocity = Vector2.zero;
         GetComponent<Collider2D>().enabled = false;
         rb2D.isKinematic = true;
+        AudioSource.PlayClipAtPoint(deathSound, transform.position);
 
         if (cycle.GetColor() == "yellow")
         {
