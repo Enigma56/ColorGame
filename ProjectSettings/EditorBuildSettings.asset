@@ -6,8 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/Main Menu.unity
     guid: f7bff422304014c3fb48a49e5f379600
@@ -50,6 +50,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/4-4 Magenta.unity
     guid: 89909656878254bd5b890d918c86c6ca
+  - enabled: 1
+    path: Assets/Scenes/4-5 Transition.unity
+    guid: 4cfc190644a754adba80b31e9f09bdc3
   - enabled: 1
     path: Assets/Scenes/5 Final Boss.unity
     guid: c3ebc710b7dc148e7a4f0dc78b37420e

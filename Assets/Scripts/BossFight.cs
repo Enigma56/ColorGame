@@ -15,7 +15,7 @@ public class BossFight : MonoBehaviour
 
     public SpriteRenderer warning;
 
-    bool slamCycle;
+    bool slamCycle = true;
     PlayerController pc;
     new CameraMovement camera;
 
@@ -26,7 +26,11 @@ public class BossFight : MonoBehaviour
     {
         pc = FindObjectOfType<PlayerController>();
         camera = FindObjectOfType<CameraMovement>();
-        slamCycle = true;
+        if (AudioSingleton.finalCutscene)
+        {
+            camera.zoomOut();
+            AudioSingleton.finalCutscene = false;
+        }
         StartCoroutine(SlamEffect());
         StartCoroutine(SlamFists());
         StartCoroutine(RotateCore());
@@ -44,7 +48,7 @@ public class BossFight : MonoBehaviour
             yield return new WaitForSeconds(0.25f);
             warning.enabled = true;
             yield return new WaitForSeconds(0.25f);
-            AudioSingleton.Play("bossSlam");
+            AudioSingleton.Play("BossSlam");
             pc.TriggerCycle();
             camera.ScreenShakeLight();
             warning.enabled = false;
@@ -85,7 +89,7 @@ public class BossFight : MonoBehaviour
         }
         leftFist.transform.localPosition = new Vector3(-10, -4, 0);
         rightFist.transform.localPosition = new Vector3(10, -4, 0);
-        AudioSingleton.Play("bossSlam");
+        AudioSingleton.Play("BossSlam");
         camera.ScreenShakeStrong();
         tileMaps[bossLives].SetActive(false);
         if (bossLives == 0)
@@ -93,44 +97,36 @@ public class BossFight : MonoBehaviour
             bouncePlatforms.SetActive(false);
         }
         bossLives++;
-        if (bossLives == 3)
+        tileMaps[bossLives].SetActive(true);
+        if (bossLives == 2)
         {
-            AudioSingleton.NextScene();
-            yield return null;
+            magentaObjects.SetActive(true);
         }
-        else {
-            tileMaps[bossLives].SetActive(true);
-            if (bossLives == 2)
-            {
-                magentaObjects.SetActive(true);
-            }
-            pc.gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
-            pc.gameObject.GetComponent<Collider2D>().enabled = false;
-            for (int i = 0; i < 50; i++)
-            {
-                pc.gameObject.transform.position = Vector2.MoveTowards(pc.gameObject.transform.position, Vector2.down * 3, 2);
-                yield return new WaitForSeconds(0.05f);
-            }
-            pc.gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
-            pc.gameObject.GetComponent<Collider2D>().enabled = true;
-            StartCoroutine(SlamEffect());
-            StartCoroutine(SlamFists());
-            pc.movementLocked = false;
+        pc.gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
+        pc.gameObject.GetComponent<Collider2D>().enabled = false;
+        for (int i = 0; i < 50; i++)
+        {
+            pc.gameObject.transform.position = Vector2.MoveTowards(pc.gameObject.transform.position, Vector2.down * 3, 2);
+            yield return new WaitForSeconds(0.05f);
         }
+        pc.gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
+        pc.gameObject.GetComponent<Collider2D>().enabled = true;
+        StartCoroutine(SlamEffect());
+        StartCoroutine(SlamFists());
+        pc.movementLocked = false;
     }
 
     IEnumerator RotateCore()
     {
         while (bossLives < 3)
         {
-            for (float angle = 0; angle < 120; angle += bossLives * 3f)
+            for (float angle = 0; angle < 120; angle += (bossLives+1))
             {
                 for (int orb = 0; orb < 3; orb++)
                 {
                     Vector2 pivot = Vector2.up * 14f;
-                    coreOrbs[orb].transform.RotateAround(pivot, Vector3.forward, angle);
+                    coreOrbs[orb].transform.RotateAround(pivot, Vector3.forward, bossLives+1);
                 }
-
                 yield return new WaitForEndOfFrame();
             }
         }
@@ -146,9 +142,18 @@ public class BossFight : MonoBehaviour
 
     public void SpikeLands()
     {
-        StopAllCoroutines();
-        StartCoroutine(RotateCore());
-        StartCoroutine(FastSlam());
-        camera.ScreenShakeStrong();
+        if (bossLives != 2)
+        {
+            StopAllCoroutines();
+            StartCoroutine(RotateCore());
+            StartCoroutine(FastSlam());
+            camera.ScreenShakeStrong();
+        }
+        else
+        {
+            camera.ScreenShake(1, 1);
+            AudioSingleton.NextScene();
+        }
+        
     }
 }

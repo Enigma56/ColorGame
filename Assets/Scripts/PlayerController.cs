@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
     int jumpNumber;
     float lastInput;
 
-    private float _lockTime = 1f;
+    private float _lockTime = 6f;
     // Start is called before the first frame update
     void Start()
     {
@@ -79,6 +79,7 @@ public class PlayerController : MonoBehaviour
 
     public void TriggerCycle()
     {
+        AudioSingleton.Play("Cycle");
         cycle.Rotate();
         if (!checkColor)
         {
