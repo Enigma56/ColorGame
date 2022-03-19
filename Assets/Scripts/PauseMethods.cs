@@ -18,11 +18,11 @@ public class PauseMethods : MonoBehaviour
 
     public void Quit()
     {
-        Debug.Log("Quitted!");
+        //Debug.Log("Quitted!");
         //When running game in Unity Editor
-        UnityEditor.EditorApplication.isPlaying = false;
+        //UnityEditor.EditorApplication.isPlaying = false;
 
         //Used in actual running game, not editor
-        //Application.Quit(0);
+        Application.Quit(0);
     }
 }

@@ -17,7 +17,7 @@ public class BossFight : MonoBehaviour
 
     bool slamCycle = true;
     PlayerController pc;
-    new CameraMovement camera;
+    CameraMovement cm;
 
     int bossLives = 0;
 
@@ -25,10 +25,10 @@ public class BossFight : MonoBehaviour
     void Start()
     {
         pc = FindObjectOfType<PlayerController>();
-        camera = FindObjectOfType<CameraMovement>();
+        cm = FindObjectOfType<CameraMovement>();
         if (AudioSingleton.finalCutscene)
         {
-            camera.zoomOut();
+            cm.zoomOut();
             AudioSingleton.finalCutscene = false;
         }
         StartCoroutine(SlamEffect());
@@ -50,7 +50,7 @@ public class BossFight : MonoBehaviour
             yield return new WaitForSeconds(0.25f);
             AudioSingleton.Play("BossSlam");
             pc.TriggerCycle();
-            camera.ScreenShakeLight();
+            cm.ScreenShakeLight();
             warning.enabled = false;
         }
         yield return null;
@@ -90,7 +90,7 @@ public class BossFight : MonoBehaviour
         leftFist.transform.localPosition = new Vector3(-10, -4, 0);
         rightFist.transform.localPosition = new Vector3(10, -4, 0);
         AudioSingleton.Play("BossSlam");
-        camera.ScreenShakeStrong();
+        cm.ScreenShakeStrong();
         tileMaps[bossLives].SetActive(false);
         if (bossLives == 0)
         {
@@ -134,7 +134,7 @@ public class BossFight : MonoBehaviour
 
     public void SpikeFalls()
     {
-        camera.zoomOut();
+        cm.zoomOut();
         pc.movementLocked = true;
         warning.enabled = false;
         pc.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
@@ -147,13 +147,17 @@ public class BossFight : MonoBehaviour
             StopAllCoroutines();
             StartCoroutine(RotateCore());
             StartCoroutine(FastSlam());
-            camera.ScreenShakeStrong();
+            cm.ScreenShakeStrong();
         }
         else
         {
-            camera.ScreenShake(1, 1);
-            AudioSingleton.NextScene();
-        }
-        
+            cm.ScreenShake(1, 1);
+            Invoke(nameof(GameComplete), 1f);
+        } 
+    }
+
+    void GameComplete()
+    {
+        AudioSingleton.NextScene();
     }
 }
